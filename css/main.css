@@ -24,6 +24,156 @@
  * Copyright 2012-2013 Mattia Larentis
  * http://www.apache.org/licenses/LICENSE-2.0
  */
+
+ /* ===== Global Styles ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 20px;
+}
+
+
+/* ===== Research Projects Section ===== */
+.project-list {
+    max-width: 900px;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.project-item {
+    background: #fff;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.project-title {
+    font-size: 1.2em;
+    color: #2980b9;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.project-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.project-desc {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* ===== Publications Section ===== */
+ul.publications {
+    max-width: 900px;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+ul.publications li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease;
+}
+
+ul.publications li:hover {
+    background-color: #f0f8ff;
+}
+
+.title {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.maintitle {
+    font-weight: bold;
+    color: #a8b5c2;
+    margin-bottom: 5px;
+}
+
+.meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.authors {
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+/* ===== Teaching Experience Section ===== */
+.teaching-list {
+    max-width: 900px;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.teaching-item {
+    background: #fff;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teaching-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.teaching-role {
+    font-size: 1.1em;
+    color: #2980b9;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.teaching-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.teaching-desc {
+    font-size: 0.95em;
+    color: #555;
+}
+
+
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+    }
+    .project-item, ul.publications li {
+        padding: 15px;
+    }
+    .project-title, .title {
+        font-size: 1.1em;
+    }
+}
+
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
@@ -5284,3 +5434,4 @@ a.credit {
 /* Common Style */
 .section {
   padding-bottom: 0; }
+
