@@ -36,8 +36,9 @@ body {
 
 /* ===== Research Projects Section ===== */
 .project-list {
-    max-width: 900px;
-    margin: auto;
+    max-width: none;
+    width: 100%;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
@@ -76,52 +77,58 @@ body {
 
 /* ===== Publications Section ===== */
 ul.publications {
-    max-width: 900px;
-    margin: auto;
-    padding: 0;
-    list-style: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
 ul.publications li {
-    background: #fff;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: background-color 0.2s ease;
+  background: #fff;
+  margin: 10px 0; /* Increased spacing */
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-bottom: 2px solid #e0e0e0; /* Divider line */
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 ul.publications li:hover {
-    background-color: #f0f8ff;
+  background-color: #f0f8ff;
+  transform: translateY(-2px);
 }
 
 .title {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 5px;
-}
-
-.maintitle {
-    font-weight: bold;
-    color: #a8b5c2;
-    margin-bottom: 5px;
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.1em;
+  margin-bottom: 8px;
 }
 
 .meta {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 10px;
 }
 
 .authors {
-    font-size: 0.9em;
-    color: #555;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.maintitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2980b9;
+  margin: 40px auto 20px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 
 /* ===== Teaching Experience Section ===== */
 .teaching-list {
-    max-width: 900px;
+    width: 100%;
     margin: auto;
     padding: 0;
     list-style: none;
@@ -154,10 +161,7 @@ ul.publications li:hover {
     margin-bottom: 10px;
 }
 
-.teaching-desc {
-    font-size: 0.95em;
-    color: #555;
-}
+.teaching-desc {  font-weight: 700;  background-color: #f0f8ff;  padding: 8px 12px;  border-left: 4px solid #2980b9;  border-radius: 4px;  display: inline-block;}
 
 
 
