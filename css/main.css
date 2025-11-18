@@ -93,35 +93,49 @@ ul.publications li {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+ul.conferences li {
+  background: #fff;
+  margin-bottom: 10px;
+  /* margin: 10px 0;  */
+  /* padding: 20px 25px; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 3px 10px rgba(0,0,0,0.08); */
+  /* border-bottom: 2px solid #e0e0e0;  */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+
 ul.publications li:hover {
   background-color: #f0f8ff;
   transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .title {
   font-weight: bold;
   color: #2c3e50;
   font-size: 1.1em;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .meta {
   font-size: 0.9em;
   color: #777;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .authors {
   font-size: 0.95em;
   color: #555;
+  margin-bottom: 10px;
 }
 
 .maintitle {
   font-size: 1.2em;
   font-weight: bold;
-  color: #d6e2eb;
+  color: #373d42;
   margin: 40px auto 20px;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
 }
 
