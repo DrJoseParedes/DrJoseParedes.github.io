@@ -133,12 +133,20 @@ ul.publications li:hover {
 .maintitle {
   font-size: 1.2em;
   font-weight: bold;
-  color: #373d42;
+  color: #ffffff;
+  margin: 40px auto 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.secondtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #5f5f6c;
   margin: 40px auto 20px;
   text-align: left;
   text-transform: uppercase;
 }
-
 
 /* ===== Teaching Experience Section ===== */
 .teaching-list {
