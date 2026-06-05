@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr Jose A. Paredes — Lecturer & Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────── */
+    :root {
+      --navy:   #0f1e2e;
+      --ink:    #1c2e40;
+      --teal:   #1a7f6e;
+      --teal-l: #23a891;
+      --gold:   #c49a3c;
+      --cream:  #f7f4ef;
+      --white:  #ffffff;
+      --muted:  #6b7280;
+      --border: #e2ddd6;
+      --shadow: 0 4px 24px rgba(15,30,46,.08);
+      --shadow-lg: 0 12px 48px rgba(15,30,46,.14);
+      --radius: 12px;
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── RESET / BASE ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAVBAR ─────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(15,30,46,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background var(--transition);
+    }
+    .nav-brand {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: .02em;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-links {
+      display: flex; gap: 2rem; align-items: center;
+    }
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); transition: var(--transition); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      padding: 80px 5% 60px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/cc-bg-3.png');
+      background-size: cover; background-position: center;
+      opacity: .18;
+    }
+    /* animated grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,127,110,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,127,110,.12) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPan 20s linear infinite;
+    }
+    @keyframes gridPan {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    }
+    .hero-avatar {
+      width: 156px; height: 156px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 0 8px rgba(196,154,60,.18), var(--shadow-lg);
+      object-fit: cover;
+      animation: fadeDown .8s ease both;
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .01em;
+      animation: fadeUp .8s .15s ease both;
+    }
+    .hero-title {
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation: fadeUp .8s .25s ease both;
+    }
+    .hero-tagline {
+      max-width: 540px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.75);
+      animation: fadeUp .8s .35s ease both;
+      line-height: 1.65;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+      animation: fadeUp .8s .45s ease both;
+    }
+    .badge {
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.06);
+    }
+    .badge.accent { border-color: var(--gold); color: var(--gold); background: rgba(196,154,60,.08); }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      animation: fadeUp .8s .55s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .7rem 1.6rem;
+      border-radius: 6px;
+      font-family: var(--ff-body);
+      font-size: .88rem; font-weight: 600; letter-spacing: .04em;
+      cursor: pointer; border: none;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--teal-l); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,127,110,.35); }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .scroll-hint {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      animation: bounce 2s ease infinite;
+      color: rgba(255,255,255,.35);
+      font-size: 1.2rem;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* ── LAYOUT HELPERS ──────────────────────────────── */
+    .container { max-width: 1060px; margin: 0 auto; padding: 0 5%; }
+    .section { padding: 80px 0; }
+    .section-alt { background: var(--white); }
+    .section-dark { background: var(--navy); color: var(--white); }
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .5rem;
+    }
+    .section-dark .section-label { color: var(--gold); }
+    .section-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+    .section-dark .section-heading { color: var(--white); }
+    .divider {
+      width: 48px; height: 3px;
+      background: var(--gold);
+      margin: .6rem 0 2.4rem;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: #374151; margin-bottom: 1rem; }
+    .info-grid {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--cream);
+      border-radius: 8px;
+      border-left: 3px solid var(--teal);
+    }
+    .info-row i { color: var(--teal); margin-top: 3px; flex-shrink: 0; width: 16px; }
+    .info-row-content strong { display: block; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .info-row-content a { color: var(--teal); }
+    .info-row-content a:hover { text-decoration: underline; }
+
+    /* ── STATS STRIP ─────────────────────────────────── */
+    .stats-strip {
+      background: var(--teal);
+      padding: 48px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .8rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      margin-top: .4rem;
+    }
+
+    /* ── RESEARCH PROJECTS ──────────────────────────── */
+    .project-grid {
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.6rem 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: var(--teal);
+      border-radius: 4px 0 0 4px;
+    }
+    .project-card:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+    .project-years {
+      font-family: var(--ff-display);
+      font-size: .85rem; font-weight: 600;
+      color: var(--teal);
+      white-space: nowrap;
+      padding-top: 3px;
+      min-width: 80px;
+    }
+    .project-body h3 {
+      font-family: var(--ff-display);
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .3rem;
+    }
+    .project-meta-text {
+      font-size: .8rem; color: var(--muted);
+      margin-bottom: .5rem;
+      font-style: italic;
+    }
+    .project-desc-text { font-size: .92rem; color: #4b5563; }
+
+    /* ── PUBLICATIONS ────────────────────────────────── */
+    .pub-section-heading {
+      font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold);
+      margin: 2.4rem 0 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-list { display: flex; flex-direction: column; gap: .9rem; }
+    .pub-item {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+    }
+    .pub-item:hover { background: var(--white); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .pub-item a { display: block; }
+    .pub-title {
+      font-weight: 600; font-size: .97rem; color: var(--navy);
+      margin-bottom: .3rem;
+      line-height: 1.45;
+    }
+    .pub-item a:hover .pub-title { color: var(--teal); }
+    .pub-venue {
+      font-size: .82rem; color: var(--muted);
+      font-style: italic;
+      margin-bottom: .25rem;
+    }
+    .pub-authors {
+      font-size: .82rem; color: #6b7280;
+    }
+    .pub-authors strong { color: var(--teal); }
+    .pub-badge {
+      display: inline-block;
+      font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      padding: .15rem .55rem;
+      border-radius: 4px;
+      margin-right: .4rem;
+      vertical-align: middle;
+    }
+    .pub-badge.journal { background: rgba(26,127,110,.12); color: var(--teal); }
+    .pub-badge.conf { background: rgba(196,154,60,.12); color: var(--gold); }
+
+    /* ── TEACHING ────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 12px; top: 6px; bottom: 6px; width: 2px;
+      background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 2.4rem; }
+    .tl-dot {
+      position: absolute; left: -40px; top: 4px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--teal);
+      z-index: 1;
+    }
+    .tl-dot.current { background: var(--teal); }
+    .tl-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .tl-card:hover { box-shadow: var(--shadow); background: var(--white); }
+    .tl-years {
+      font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .25rem;
+    }
+    .tl-role {
+      font-family: var(--ff-display);
+      font-size: 1.08rem; font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+    .tl-institution {
+      font-size: .88rem; color: var(--muted);
+      font-style: italic;
+      margin-bottom: .5rem;
+    }
+    .tl-courses {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+    }
+    .tl-chip {
+      font-size: .76rem; font-weight: 500;
+      padding: .25rem .75rem;
+      border-radius: 20px;
+      background: rgba(26,127,110,.1);
+      color: var(--teal);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2.5rem 5%;
+      font-size: .85rem;
+    }
+    footer a { color: rgba(255,255,255,.5); }
+    footer a:hover { color: var(--gold); }
+    footer strong { color: rgba(255,255,255,.8); font-family: var(--ff-display); }
+
+    /* ── MOBILE NAV ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed; inset: 64px 0 0 0;
+        flex-direction: column; justify-content: center; align-items: center;
+        background: var(--navy);
+        gap: 2rem;
+        transform: translateY(-100%);
+        transition: transform var(--transition);
+        pointer-events: none;
+      }
+      .nav-links.open { transform: translateY(0); pointer-events: all; }
+      .nav-links a { font-size: 1.1rem; }
+      .nav-toggle { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card { grid-template-columns: 1fr; gap: .5rem; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="nav" id="navbar">
+  <a class="nav-brand" href="#top">Dr. Jose <span>Paredes</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#teaching">Teaching</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <img class="hero-avatar" src="images/jose_paredes.jpg" alt="Jose A. Paredes">
+    <h1 class="hero-name">Jose A. Paredes</h1>
+    <p class="hero-title">PhD &nbsp;·&nbsp; MSc &nbsp;·&nbsp; BSc &nbsp;·&nbsp; FHEA</p>
+    <p class="hero-tagline">Lecturer & Researcher at the University of Roehampton, London. Specialising in millimetre-wave radar, drone navigation, and signal processing.</p>
+    <div class="hero-badges">
+      <span class="badge accent">mmWave Radar</span>
+      <span class="badge">Signal Processing</span>
+      <span class="badge">Machine Learning</span>
+      <span class="badge">Embedded Systems</span>
+      <span class="badge">Drone Navigation</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://scholar.google.com/citations?user=GKOkyHoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
+        <i class="fa-brands fa-google-scholar"></i> Google Scholar
+      </a>
+      <a class="btn btn-ghost" href="mailto:jose.paredes@roehampton.ac.uk">
+        <i class="fa-solid fa-envelope"></i> Get in Touch
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <p class="section-label">Introduction</p>
+    <h2 class="section-heading">About Me</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am a Lecturer at the University of Roehampton, London, UK. My research focuses on the application of millimetre-wave (mmWave) radar technology for environmental analysis — including tracking individuals and developing navigation systems for drones.</p>
+        <p>I have a strong background in signal processing, machine learning, and embedded systems, and I am passionate about teaching and mentoring students in engineering and computer science.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-row">
+          <i class="fa-solid fa-envelope"></i>
+          <div class="info-row-content">
+            <strong>Email</strong>
+            <a href="mailto:jose.paredes@roehampton.ac.uk">jose.paredes@roehampton.ac.uk</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <i class="fa-solid fa-phone"></i>
+          <div class="info-row-content">
+            <strong>Phone</strong>
+            (+44) 020 8392 3696
+          </div>
+        </div>
+        <div class="info-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <div class="info-row-content">
+            <strong>Address</strong>
+            University of Roehampton, London, SW15 5PU
+          </div>
+        </div>
+        <!-- <div class="info-row">
+          <i class="fa-brands fa-google-scholar"></i>
+          <div class="info-row-content">
+            <strong>Google Scholar</strong>
+            <a href="https://scholar.google.com/citations?user=GKOkyHoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">View profile →</a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">14</div>
+        <div class="stat-label">Journal Articles</div>
+      </div>
+      <div>
+        <div class="stat-num">22</div>
+        <div class="stat-label">Conference Papers</div>
+      </div>
+      <div>
+        <div class="stat-num">8</div>
+        <div class="stat-label">Research Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years Teaching</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESEARCH PROJECTS ── -->
+<section class="section" id="research">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-heading">Research Projects</h2>
+    <div class="divider"></div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-years">2026-2030</div>
+        <div class="project-body">
+          <h3>European Network for Developing and Evaluating the Use of GenAI in Education</h3>
+          <p class="project-meta-text">EU COST Action </p>
+          <p class="project-desc-text">Co-PI at University of Roehampton</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2026</div>
+        <div class="project-body">
+          <h3>Feasibility study for the development of a proprietary hardware and software system for real-time personnel optimization</h3>
+          <p class="project-meta-text">mini-KTP</p>
+          <p class="project-desc-text">PI at University of Roehampton</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2026</div>
+        <div class="project-body">
+          <h3>Creating a Digital Twin for Retrofit Planning</h3>
+          <p class="project-meta-text">Richmond Borough Council for Green Skills Development and Research</p>
+          <p class="project-desc-text">Co-PI at University of Roehampton</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2023–2025</div>
+        <div class="project-body">
+          <h3>Integrated Location and Sensing for Digital Tracking of Human Activity</h3>
+          <p class="project-meta-text">University of Extremadura &nbsp;·&nbsp; PID2021-122642OBC42</p>
+          <p class="project-desc-text">Main researcher on the mmWave radar and ToF cameras line. Publications focused on monitoring human activity and improving radar accuracy. Key contribution: analysis of mmWave radar for physiotherapy recovery monitoring.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2023–2024</div>
+        <div class="project-body">
+          <h3>Development and Deployment of Digital Human Activity Tracing Systems in Cultural Tourist Environments</h3>
+          <p class="project-meta-text">University of Extremadura &nbsp;·&nbsp; TED2021-129310B-I00</p>
+          <p class="project-desc-text">Investigator on the mmWave radar research line, achieving publications on localization and vital signs extraction.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2022–2024</div>
+        <div class="project-body">
+          <h3>Smart Sensors for a Wearable-free and Contactless Virtual Ward</h3>
+          <p class="project-meta-text">Queen Mary University of London &nbsp;·&nbsp; EPSRC: EP/W03199X/1</p>
+          <p class="project-desc-text">Researcher on the mmWave radar side. Significant contribution: new approach for falls prevention focused on elderly care.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2019–2022</div>
+        <div class="project-body">
+          <h3>UK National Centre for Nuclear Robotics (NCNR)</h3>
+          <p class="project-meta-text">Queen Mary University of London &nbsp;·&nbsp; EPSRC: EP/R02572X/1</p>
+          <p class="project-desc-text">Researcher on the mmWave radar side. Main contribution: model for indoor drone localization in cluttered and occluded scenes.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-years">2018–2021</div>
+        <div class="project-body">
+          <h3>Local Positioning Systems: A Holistic Approach Exploring New Core Technologies</h3>
+          <p class="project-meta-text">University of Extremadura &nbsp;·&nbsp; RTI2018-095168-BC54</p>
+          <p class="project-desc-text">Researcher on positioning systems. Investigations focused on indoor drone localization using ultrasounds, infrared ToF cameras, and mmWave radars.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ── -->
+<section class="section section-alt" id="publications">
+  <div class="container">
+    <p class="section-label">Scholarly Output</p>
+    <h2 class="section-heading">Publications</h2>
+    <div class="divider"></div>
+
+    <p class="pub-section-heading"><i class="fa-solid fa-newspaper"></i>&ensp;Journal Articles</p>
+    <ul class="pub-list">
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1038/s41597-026-07172-9" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Extensive Age-Balanced and Subject-Varied mmWave Radar Dataset of Referenced Records for Vital Signs</p>
+          <p class="pub-venue">Scientific Data (Nature) 2026 &nbsp;·&nbsp; doi: 10.1038/s41597-026-07172-9</p>
+          <p class="pub-authors">F. Parralejo, <strong>J. A. Paredes</strong>, F. J. Álvarez, Á. Vicario</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s25185751" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>mmPhysio: Millimetre-Wave Radar for Precise Hop Assessment</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 25, no. 18, Sept. 2025 &nbsp;·&nbsp; doi: 10.3390/s25185751</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, F. Parralejo, T. Aguilera, F. J. Álvarez</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1038/s41598-025-14416-y" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Reimagining falls prevention with insights from systems mapping on the use of millimetre-wave radar for remote health monitoring</p>
+          <p class="pub-venue">Scientific Reports (Nature), vol. 15, no. 1, Aug. 2025 &nbsp;·&nbsp; doi: 10.1038/s41598-025-14416-y</p>
+          <p class="pub-authors">E. Dogu, <strong>J. A. Paredes</strong>, A. Alomainy, J. M. Jones, K. Z. Rajab</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s24237469" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Precise Mechanical Oscillator Design and Calibration for Characterising Sub-Millimetre Movements in mmWave Radar Systems</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 24, no. 23, Nov. 2024 &nbsp;·&nbsp; doi: 10.3390/s24237469</p>
+          <p class="pub-authors">F. Parralejo, F. J. Álvarez, <strong>J. A. Paredes</strong>, F. J. Aranda, T. Aguilera</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/JSEN.2024.3393030" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Spatial Calibration of Millimeter-Wave Radar for Close-Range Object Location</p>
+          <p class="pub-venue">IEEE Sensors Journal, vol. 24, no. 12, June 2024 &nbsp;·&nbsp; doi: 10.1109/JSEN.2024.3393030</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, M. Hansard, K. Z. Rajab, F. J. Álvarez</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1016/j.eswa.2022.117095" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Performance analysis of fingerprinting indoor positioning methods with BLE</p>
+          <p class="pub-venue">Expert Systems with Applications (Elsevier), vol. 202, Sept. 2022 &nbsp;·&nbsp; doi: 10.1016/j.eswa.2022.117095</p>
+          <p class="pub-authors">F. J. Aranda, F. Parralejo, F. J. Álvarez, <strong>J. A. Paredes</strong></p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1016/j.eswa.2021.115563" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>A Gaussian Process model for UAV localization using millimetre wave radar</p>
+          <p class="pub-venue">Expert Systems with Applications (Elsevier), vol. 185, Dec. 2021 &nbsp;·&nbsp; doi: 10.1016/j.eswa.2021.115563</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, F. J. Álvarez, M. Hansard, K. Z. Rajab</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1016/j.eswa.2019.112989" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Precise drone location and tracking by adaptive matched filtering from a top-view ToF camera</p>
+          <p class="pub-venue">Expert Systems with Applications (Elsevier), vol. 141, Mar. 2020 &nbsp;·&nbsp; doi: 10.1016/j.eswa.2019.112989</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, F. J. Álvarez, T. Aguilera, F. J. Aranda</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1016/j.dsp.2020.102704" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Doppler compensation algorithm for chirp-based acoustic local positioning systems</p>
+          <p class="pub-venue">Digital Signal Processing (Elsevier), vol. 100, May 2020 &nbsp;·&nbsp; doi: 10.1016/j.dsp.2020.102704</p>
+          <p class="pub-authors">T. Aguilera, F. J. Álvarez, <strong>J. A. Paredes</strong>, J. A. Moreno</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s19061385" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Easily-Deployable Acoustic Local Positioning System Based on Auto-Calibrated Wireless Beacons</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 9, no. 16, May 2020 &nbsp;·&nbsp; doi: 10.3390/s19061385</p>
+          <p class="pub-authors">J. A. Moreno, F. J. Álvarez, T. Aguilera, <strong>J. A. Paredes</strong></p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/TIM.2017.2777578" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Acoustic tag identification based on noncoherent FSK detection with portable devices</p>
+          <p class="pub-venue">IEEE Transactions on Instrumentation and Measurement, vol. 67, no. 2, Feb. 2018 &nbsp;·&nbsp; doi: 10.1109/TIM.2017.2777578</p>
+          <p class="pub-authors">F. J. Álvarez, T. Aguilera, <strong>J. A. Paredes</strong>, J. A. Moreno</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s18010089" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>3D Indoor Positioning of UAVs with Spread Spectrum Ultrasound and Time-of-Flight Cameras</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 18, no. 1, 2017 &nbsp;·&nbsp; doi: 10.3390/s18010089</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, F. J. Álvarez, T. Aguilera, J. M. Villadangos</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1016/j.sigpro.2014.07.002" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Spreading sequences in active sensing: A review</p>
+          <p class="pub-venue">Signal Processing (Elsevier), vol. 106, Jul. 2014 &nbsp;·&nbsp; doi: 10.1016/j.sigpro.2014.07.002</p>
+          <p class="pub-authors">E. García, <strong>J. A. Paredes</strong>, F. J. Álvarez, M. C. Pérez, J. J. García</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s120608055" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Electronic Nose Based on ICA Combined with PLS and Artificial Neural Networks for Wine Prediction</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 12, Jun. 2012 &nbsp;·&nbsp; doi: 10.3390/s120608055</p>
+          <p class="pub-authors">T. Aguilera, J. Lozano, <strong>J. A. Paredes</strong>, F. J. Álvarez, J. I. Suárez</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.3390/s111110765" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge journal">Journal</span>Analysis of Doppler Effect on the Pulse Compression of Different Codes Emitted by an Ultrasonic LPS</p>
+          <p class="pub-venue">Sensors (MDPI), vol. 11, Nov. 2011 &nbsp;·&nbsp; doi: 10.3390/s111110765</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, T. Aguilera, F. J. Álvarez, J. Lozano, J. Morera</p>
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- ###################### -->
+
+    <p class="pub-section-heading" style="margin-top:3rem;"><i class="fa-solid fa-users"></i>&ensp;Conference Papers</p>
+    <ul class="pub-list">
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>AI-Driven Business Intelligence for E-Commerce in Traditional Industries: A Case Study of Romania's Wine Sector</p>
+        <p class="pub-venue">IEEE International Conference on E-Business Engineering (ICEBE), 2025</p>
+        <p class="pub-authors">L.-A. Enache, <strong>J. A. Paredes</strong>, A. Araujo</p>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/MeMeA65319.2025.11067989" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>Challenges Behind Heart Rate Extraction Using mmWave Radar Due to External Factors</p>
+          <p class="pub-venue">IEEE International Symposium on Medical Measurements and Applications, 2025</p>
+          <p class="pub-authors">F. Parralejo, <strong>J. A. Paredes</strong>, F. J. Álvarez, K. Z. Rajab, E. Dogu</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.5220/0012618900003699" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>A Falls Risk Screening Tool Based on Millimetre-Wave Radar</p>
+          <p class="pub-venue">10th International Conference on ICT for Ageing Well and e-Health, Angers, France, 2024</p>
+          <p class="pub-authors">E. Dogu, <strong>J. A. Paredes</strong>, A. Alomainy, J. Jones, K. Rajab</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/IPIN57070.2023.10332501" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>Millimetre Wave Radar System for Safe Flight of Drones in Human-Transited Environments</p>
+          <p class="pub-venue">IPIN, Nuremberg, Germany, Sept. 2023</p>
+          <p class="pub-authors">F. Parralejo, <strong>J. A. Paredes</strong>, F. J. Aranda, F. J. Álvarez, J. A. Moreno</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/COINS57856.2023.10189316" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>Millimetre-Wave Radar Calibration for Heart Rate Estimation using Bayesian Neural Networks</p>
+          <p class="pub-venue">IEEE International Conference on Omni-Layer Intelligent Systems, 2023</p>
+          <p class="pub-authors">F. Parralejo, <strong>J. A. Paredes</strong>, F. J. Aranda, F. J. Álvarez</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Analysis of Vital Signs Extraction from a Millimetre-Wave Radar</p>
+        <p class="pub-venue">XXX Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2023</p>
+        <p class="pub-authors">F. Parralejo, <strong>J. A. Paredes</strong>, F. J. Aranda, F. J. Álvarez</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Doppler Tolerance of Binary Chirp Modulation in Acoustic Local Positioning Systems</p>
+        <p class="pub-venue">International Conference on Indoor Positioning and Indoor Navigation, 2023</p>
+        <p class="pub-authors">T. Aguilera, F. J. Álvarez, <strong>J. A. Paredes</strong>, J. A. Moreno, J. Morera</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>mmWave Radar-Based LPS for UAVs Dynamically Calibrated via Depth Camera</p>
+        <p class="pub-venue">International Conference on Indoor Positioning and Indoor Navigation, 2021</p>
+        <p class="pub-authors"><strong>J. A. Paredes</strong>, M. Hansard, K. Z. Rajab, F. J. Álvarez, T. Aguilera</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Real Time Positioning System for Two UAVs via ToF Camera</p>
+        <p class="pub-venue">International Conference on Indoor Positioning and Indoor Navigation, 2018</p>
+        <p class="pub-authors"><strong>J. A. Paredes</strong>, F. J. Álvarez, T. Aguilera, J. D. Gutiérrez, J. A. Moreno</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Visible Light Positioning for Smartphones Based on Biphase Mark Coding: A Proof of Concept</p>
+        <p class="pub-venue">International Conference on Indoor Positioning and Indoor Navigation, 2018</p>
+        <p class="pub-authors">J. D. Gutiérrez, F. J. Álvarez, T. Aguilera, <strong>J. A. Paredes</strong>, J. Morera</p>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/WISP.2015.7139184" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>Spreading Sequences Performance on Time-of-Flight Smart Pixels</p>
+          <p class="pub-venue">9th IEEE International Symposium on Intelligent Signal Processing, 2015</p>
+          <p class="pub-authors"><strong>J. A. Paredes</strong>, T. Aguilera, F. J. Álvarez, J. A. Moreno, J. Morera Mainar, E. García</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/IPIN.2015.7346964" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>Performance Analysis of Different SIC-Based Methods for Multipath Cancelation</p>
+          <p class="pub-venue">International Conference on Indoor Positioning and Indoor Navigation, 2015</p>
+          <p class="pub-authors">T. Aguilera, F. J. Álvarez, <strong>J. A. Paredes</strong>, J. Morera, J. A. Moreno</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <a href="https://doi.org/10.1109/IPIN.2013.6817851" target="_blank" rel="noopener">
+          <p class="pub-title"><span class="pub-badge conf">Conference</span>New Pseudo-Orthogonal Family of Polyphase Codes to Improve Doppler Resilience</p>
+          <p class="pub-venue">Indoor Positioning and Indoor Navigation, 2013</p>
+          <p class="pub-authors">T. Aguilera, <strong>J. A. Paredes</strong>, F. J. Álvarez, J. I. Suárez, Á. Hernández</p>
+        </a>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Performance Comparison between Frequency-Division and Code-Division Access Methods in an Ultrasonic LPS</p>
+        <p class="pub-venue">Indoor Positioning and Indoor Navigation, 2013</p>
+        <p class="pub-authors">F. J. Álvarez, T. Aguilera, <strong>J. A. Paredes</strong> et al.</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Localisation and Positioning through Olfactory Sensors: A Review</p>
+        <p class="pub-venue">Jornadas de Automática, 2015</p>
+        <p class="pub-authors"><strong>J. A. Paredes</strong>, T. Aguilera, F. J. Álvarez, J. A. Moreno et al.</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Portable Electronic Nose for Mobile Robots</p>
+        <p class="pub-venue">6èmes Journées Franco-espagnoles IBERNAM - CMC2, 2012</p>
+        <p class="pub-authors">J. Lozano, J. I. Suárez, J. M. Ordiales, T. Aguilera, <strong>J. A. Paredes</strong>, F. J. Álvarez</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Effect of Receiver Movement on Signal Detection in an Ultrasonic LPS</p>
+        <p class="pub-venue">Indoor Positioning and Indoor Navigation, 2011</p>
+        <p class="pub-authors">F. J. Álvarez, T. Aguilera, <strong>J. A. Paredes</strong>, J. Morera, J. Á. Fernández</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Detection and Recognition of Aromas by Means of Electronic Nose</p>
+        <p class="pub-venue">Jornadas de Automática, 2011</p>
+        <p class="pub-authors">C. Polo, J. Lozano, F. J. Álvarez, J. Morera, T. Aguilera, <strong>J. A. Paredes</strong></p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Analysis of the Doppler Effect on Pulse Compression of an Ultrasonic LPS</p>
+        <p class="pub-venue">Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2011</p>
+        <p class="pub-authors"><strong>J. A. Paredes</strong>, T. Aguilera, F. J. Álvarez, J. Lozano, J. Morera</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Modelling an Ultrasonic LPS Performance Based on the Emission of LS Codes</p>
+        <p class="pub-venue">Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2011</p>
+        <p class="pub-authors">T. Aguilera, <strong>J. A. Paredes</strong>, F. J. Álvarez, J. Morera, A. Gordillo</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Doppler Shift-Resistant Polyphase Codes Focused on an Ultrasonic LPS</p>
+        <p class="pub-venue">Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2013</p>
+        <p class="pub-authors"><strong>J. A. Paredes</strong>, T. Aguilera, F. J. Álvarez, J. Á. Fernández, D. Moreno</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>Ultrasonic Location Based Services on iOS Devices</p>
+        <p class="pub-venue">Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2013</p>
+        <p class="pub-authors">T. Aguilera, <strong>J. A. Paredes</strong>, F. J. Álvarez, J. Lozano, J. Á. Fernández</p>
+      </li>
+
+      <li class="pub-item">
+        <p class="pub-title"><span class="pub-badge conf">Conference</span>TCP/IP Encapsulation for Remote Control of Surveillance Cameras</p>
+        <p class="pub-venue">Seminario Anual de Automática, Electrónica Industrial e Instrumentación, 2013</p>
+        <p class="pub-authors">J. Á. Fernández, F. Álvarez, D. Moreno, A. Sánchez, <strong>J. A. Paredes</strong>, J. Lozano Rogado</p>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ── TEACHING ── -->
+<section class="section" id="teaching">
+  <div class="container">
+    <p class="section-label">Education & Mentoring</p>
+    <h2 class="section-heading">Teaching Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot current"></div>
+        <div class="tl-card">
+          <div class="tl-years">2023 – Present</div>
+          <div class="tl-role">Lecturer</div>
+          <div class="tl-institution">University of Roehampton, London, UK</div>
+          <div class="tl-courses">
+            <span class="tl-chip">Software Development (Python)</span>
+            <span class="tl-chip">HTML & JavaScript</span>
+            <span class="tl-chip">Databases</span>
+            <span class="tl-chip">Computer Systems</span>
+            <span class="tl-chip">Technology Projects</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-years">2021 – 2023</div>
+          <div class="tl-role">Lab Assistant / Demonstrator</div>
+          <div class="tl-institution">Queen Mary University of London, UK</div>
+          <div class="tl-courses">
+            <span class="tl-chip">Computer Graphics</span>
+            <span class="tl-chip">Introduction to Multimedia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-years">2020 – 2022</div>
+          <div class="tl-role">Assistant Lecturer</div>
+          <div class="tl-institution">National University of Distance Education (UNED), Spain</div>
+          <div class="tl-courses">
+            <span class="tl-chip">General Physics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-years">2012 – 2022</div>
+          <div class="tl-role">Assistant Lecturer / Lecturer</div>
+          <div class="tl-institution">University of Extremadura, Spain</div>
+          <div class="tl-courses">
+            <span class="tl-chip">Laboratory of Electronics</span>
+            <span class="tl-chip">Electronics</span>
+            <span class="tl-chip">Analogue Electronics</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Dr Jose A. Paredes</strong>
+  <p style="margin-top:.5rem;">University of Roehampton · London, SW15 5PU · <a href="mailto:jose.paredes@roehampton.ac.uk">jose.paredes@roehampton.ac.uk</a></p>
+  <p style="margin-top:.75rem;font-size:.78rem;">Based on a design by <a href="https://templateflip.com" target="_blank" rel="noopener">TemplateFlip</a></p>
+</footer>
+
+<script>
+  // ── Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // ── Scroll-based navbar shade
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 40 ? 'rgba(15,30,46,.98)' : 'rgba(15,30,46,.92)';
+  });
+
+  // ── Scroll reveal (simple intersection observer)
+  const revealEls = document.querySelectorAll('.project-card, .pub-item, .tl-item, .info-row');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = 1; e.target.style.transform = 'translateY(0)'; io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity .45s ease, transform .45s ease';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
